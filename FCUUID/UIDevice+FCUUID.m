@@ -13,5 +13,9 @@
 {
     return [FCUUID uuidForDevice];
 }
+-(NSString *)idfa
+{
+    return [FCUUID idfaForDevice];
+}
 
 @end

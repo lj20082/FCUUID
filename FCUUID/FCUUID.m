@@ -7,7 +7,7 @@
 
 #import "FCUUID.h"
 #import "UICKeyChainStore.h"
-
+#import <AdSupport/AdSupport.h>
 
 @implementation FCUUID
 
@@ -19,7 +19,7 @@ NSString *const _uuidForInstallationKey = @"fc_uuidForInstallation";
 NSString *const _uuidForDeviceKey = @"fc_uuidForDevice";
 NSString *const _uuidsOfUserDevicesKey = @"fc_uuidsOfUserDevices";
 NSString *const _uuidsOfUserDevicesToggleKey = @"fc_uuidsOfUserDevicesToggle";
-
+NSString *const _idfaForDeviceKey = @"fc_idfaForDevice";
 
 +(FCUUID *)sharedInstance
 {
@@ -110,7 +110,6 @@ NSString *const _uuidsOfUserDevicesToggleKey = @"fc_uuidsOfUserDevicesToggle";
     return uuidValue;
 }
 
-
 -(NSString *)uuidForKey:(id<NSCopying>)key
 {
     if( _uuidForKey == nil ){
@@ -158,6 +157,14 @@ NSString *const _uuidsOfUserDevicesToggleKey = @"fc_uuidsOfUserDevicesToggle";
     return _uuidForVendor;
 }
 
+-(NSString *)idfaForDevice
+{
+    if( _idfaForDevice == nil ){
+        NSString *defaultValue = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+        _uuidForDevice = [self _getOrCreateValueForKey:_uuidForDeviceKey defaultValue:defaultValue userDefaults:YES keychain:YES service:nil accessGroup:nil synchronizable:NO];
+    }
+    return _idfaForDevice;
+}
 
 -(void)uuidForDevice_updateWithValue:(NSString *)value
 {
@@ -387,7 +394,6 @@ NSString *const _uuidsOfUserDevicesToggleKey = @"fc_uuidsOfUserDevicesToggle";
     }
 }
 
-
 +(NSString *)uuid
 {
     return [[self sharedInstance] uuid];
@@ -463,6 +469,10 @@ NSString *const _uuidsOfUserDevicesToggleKey = @"fc_uuidsOfUserDevicesToggle";
 +(BOOL)uuidValueIsValid:(NSString *)uuidValue
 {
     return [[self sharedInstance] uuidValueIsValid:uuidValue];
+}
+
++(NSString *)idfaForDevice{
+    return [[self sharedInstance] idfaForDevice];
 }
 
 

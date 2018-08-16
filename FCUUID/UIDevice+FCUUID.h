@@ -12,5 +12,7 @@
 @interface UIDevice (FCUUID)
 
 -(NSString *)uuid;
+// 获取idfa，获取不到返回uuid
+-(NSString *)idfa;
 
 @end

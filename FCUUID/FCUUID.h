@@ -18,6 +18,7 @@ extern NSString *const FCUUIDsOfUserDevicesDidChangeNotification;
     NSString *_uuidForVendor;
     NSString *_uuidForDevice;
     NSString *_uuidsOfUserDevices;
+    NSString *_idfaForDevice;
     BOOL _uuidsOfUserDevices_iCloudAvailable;
 }
 
@@ -35,5 +36,7 @@ extern NSString *const FCUUIDsOfUserDevicesDidChangeNotification;
 +(NSArray *)uuidsOfUserDevicesExcludingCurrentDevice;
 
 +(BOOL)uuidValueIsValid:(NSString *)uuidValue;
+
++(NSString *)idfaForDevice;
 
 @end
