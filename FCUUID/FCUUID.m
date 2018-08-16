@@ -161,7 +161,7 @@ NSString *const _idfaForDeviceKey = @"fc_idfaForDevice";
 {
     if( _idfaForDevice == nil ){
         NSString *defaultValue = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
-        _uuidForDevice = [self _getOrCreateValueForKey:_uuidForDeviceKey defaultValue:defaultValue userDefaults:YES keychain:YES service:nil accessGroup:nil synchronizable:NO];
+        _idfaForDevice = [self _getOrCreateValueForKey:_idfaForDeviceKey defaultValue:defaultValue userDefaults:YES keychain:YES service:nil accessGroup:nil synchronizable:NO];
     }
     return _idfaForDevice;
 }
